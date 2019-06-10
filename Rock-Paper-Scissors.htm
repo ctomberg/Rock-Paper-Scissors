@@ -3,15 +3,70 @@
 <head>
   <meta charset="utf-8">
   <title>Rock Paper Scissors Game</title>
-
 </head>
 <body>
 
   <script>
+      var playerScore = 0;
+      var computerScore = 0;
+     // Create array of combined values 3 winners, 3 losers, 3 ties
+      var combined = ["RockScissors", "PaperRock", "ScissorsPaper", "RockPaper", "PaperScissors", 
+      "ScissorsRock", "RockRock", "PaperPaper", "ScissorsScissors"];
 
+      // Play best of 5 (First player to 3 wins)
+      while (playerScore < 3 && computerScore < 3) {
+          game();
+      } 
+      console.log("Game Over.\nYour score: " + playerScore + "\nComputer score: " + computerScore);
+       
+      function game() {
+            playerSelection = convertPS(prompt("Please type 'rock', 'paper', or 'scissors'."));
+            computerSelection = computerPlay();
+            round(playerSelection, computerSelection);
+        }
 
-  </script>
+        function round(playerSelection, computerSelection) {
+            both = playerSelection + computerSelection;
+            console.log(winLose(both) + ' ' + '\nYou chose ' + playerSelection + '\nThe computer chose ' + computerSelection + '\n' + result(both) + '\nYour Score: ' + playerScore + '\nComputer Score: ' + computerScore);
+        }
 
-  
+        // Generate random number (1 - 3) and convert to 'Rock', 'Paper', or 'Scissors'
+        function computerPlay() {
+            let compPick =['Rock', 'Paper', 'Scissors'];
+            var compNumber = Math.floor(Math.random() * 3);
+            return compPick[compNumber];
+        }
+
+        // Convert input to uppercase/lowercase 'Rock', 'Paper', or 'Scissors'
+        function convertPS(playerInput) {
+            return(playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase())
+        } 
+
+        // Match combined selections to array of combined values to determine winner/loser
+        function winLose(both) {
+            if (combined.indexOf(both) <= 2) {
+                ++playerScore;
+                return('You Win!');
+            } else if (combined.indexOf(both) <= 5) {
+                ++computerScore;
+                return('You Lose!');
+            } else {
+                return('Tie!');
+            }
+        }
+
+        // Match combined selections to array of combined values to display how game was won 
+        function result(both) {
+            if (combined.indexOf(both) == 1 || combined.indexOf(both) == 3) {
+                return('Paper covers rock!');
+            } else if (combined.indexOf(both) == 2 || combined.indexOf(both) == 4) {
+                return('Scissors cut paper!');
+            } else if (combined.indexOf(both) == 0 || combined.indexOf(both) == 5) {
+                return('Rock breaks scissors!');
+            } else {
+                return('');
+            }
+        }
+  </script>  
 </body>
 </html>
