@@ -1,0 +1,56 @@
+html {
+    font-size: 100%;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.btns {
+    display: flex;
+    flex: 1;
+    // height: 300vh;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btn {
+      /* default for <button>, but useful for <a> */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  /* create a small space when buttons wrap on 2 lines */
+ // margin: 2px 0;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 1px transparent;
+  border-radius: 4px;
+
+  /* size comes from text & padding (no width/height) */
+  padding: 0.5em 1em;
+
+  /* make sure colors have enough contrast! */
+  color: #ffffff;
+  background-color: #9555af;
+/*     background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    height: 100px;
+    width: 100px;
+    border: 4px solid black;
+    font-size 5rem; */
+    transition: all 0.15s;
+
+}
+
+.btnLetter {
+    font-size: 4rem;
+
+}
+
+.btnText {
+    font-size: 2rem;
+
+}

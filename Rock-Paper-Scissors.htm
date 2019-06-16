@@ -3,8 +3,25 @@
 <head>
   <meta charset="utf-8">
   <title>Rock Paper Scissors Game</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <div class="btns">
+        <div class="btn">
+            <button><span class="btnLetter">R</span><br/>
+            <span class="btntext">Rock</span></button>
+        </div>
+        <div class="btn">
+            <button><span class="btnLetter">P</span><br/>
+            <span class="btntext">Paper</span></button>
+        </div>
+        <div class="btn">
+            <button><span class="btnLetter">S</span><br/>
+            <span class="btntext">Scissors</span></button>
+        </div>
+        </div>
+    </div>
 
   <script>
       var playerScore = 0;
@@ -14,9 +31,9 @@
       "ScissorsRock", "RockRock", "PaperPaper", "ScissorsScissors"];
 
       // Play best of 5 (First player to 3 wins)
-      while (playerScore < 3 && computerScore < 3) {
+/*       while (playerScore < 3 && computerScore < 3) {
           game();
-      } 
+      }  */
       console.log("Game Over.\nYour score: " + playerScore + "\nComputer score: " + computerScore);
        
       function game() {
@@ -26,7 +43,7 @@
         }
 
         function round(playerSelection, computerSelection) {
-            both = playerSelection + computerSelection;
+            both = (combined.indexOf(playerSelection + computerSelection);
             console.log(winLose(both) + ' ' + '\nYou chose ' + playerSelection + '\nThe computer chose ' + computerSelection + '\n' + result(both) + '\nYour Score: ' + playerScore + '\nComputer Score: ' + computerScore);
         }
 
@@ -44,10 +61,10 @@
 
         // Match combined selections to array of combined values to determine winner/loser
         function winLose(both) {
-            if (combined.indexOf(both) <= 2) {
+            if both <= 2 {
                 ++playerScore;
                 return('You Win!');
-            } else if (combined.indexOf(both) <= 5) {
+            } else if both <= 5) {
                 ++computerScore;
                 return('You Lose!');
             } else {
@@ -57,16 +74,19 @@
 
         // Match combined selections to array of combined values to display how game was won 
         function result(both) {
-            if (combined.indexOf(both) == 1 || combined.indexOf(both) == 3) {
+            if (both == 1 || both == 3) {
                 return('Paper covers rock!');
-            } else if (combined.indexOf(both) == 2 || combined.indexOf(both) == 4) {
+            } else if (both == 2 || both == 4) {
                 return('Scissors cut paper!');
-            } else if (combined.indexOf(both) == 0 || combined.indexOf(both) == 5) {
+            } else if (both == 0 || both == 5) {
                 return('Rock breaks scissors!');
             } else {
                 return('');
             }
         }
+
+/*         const buttons = document.querySelectorAll('.btn');
+        window.addEventListener('click') */
   </script>  
 </body>
 </html>
