@@ -3,90 +3,87 @@
 <head>
   <meta charset="utf-8">
   <title>Rock Paper Scissors Game</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>Rock Paper Scissors</h1>
+    <h2>Play a game of Rock Paper Scissors against the computer.  First to five points wins.</h2>
+    <h3>Pick Rock, Paper or Scissors from the buttons below:</h3>
 
     <div class="btns">
-        <div class="btn">
-            <button><span class="btnLetter">R</span><br/>
-            <span class="btntext">Rock</span></button>
-        </div>
-        <div class="btn">
-            <button><span class="btnLetter">P</span><br/>
-            <span class="btntext">Paper</span></button>
-        </div>
-        <div class="btn">
-            <button><span class="btnLetter">S</span><br/>
-            <span class="btntext">Scissors</span></button>
-        </div>
-        </div>
+        <button id="Rock">Rock</button>
+        <button id="Paper">Paper</button>
+        <button id ="Scissors">Scissors</button>
     </div>
 
+  
+
   <script>
-      var playerScore = 0;
-      var computerScore = 0;
-     // Create array of combined values 3 winners, 3 losers, 3 ties
-      var combined = ["RockScissors", "PaperRock", "ScissorsPaper", "RockPaper", "PaperScissors", 
-      "ScissorsRock", "RockRock", "PaperPaper", "ScissorsScissors"];
+    var playerScore = 0;
+    var computerScore = 0;
+    // Create array of combined values 3 winners, 3 losers, 3 ties
+    var combined = ["RockScissors", "PaperRock", "ScissorsPaper", "RockPaper", "PaperScissors", "ScissorsRock", "RockRock", "PaperPaper", "ScissorsScissors"];
+    var para = document.createElement("p");
 
-      // Play best of 5 (First player to 3 wins)
-/*       while (playerScore < 3 && computerScore < 3) {
-          game();
-      }  */
-      console.log("Game Over.\nYour score: " + playerScore + "\nComputer score: " + computerScore);
-       
-      function game() {
-            playerSelection = convertPS(prompt("Please type 'rock', 'paper', or 'scissors'."));
-            computerSelection = computerPlay();
-            round(playerSelection, computerSelection);
+    function playRound(playerSelection) {
+        let computerSelection = computerPlay();
+        let both = (combined.indexOf(playerSelection + computerSelection));
+
+        var winner = document.createElement("p");
+        para.innerText =  (winLose(both) + ' ' + '\nYou chose ' + playerSelection + '\nThe computer chose ' + computerSelection + '\n' + result(both) + '\n\nYour Score: ' + playerScore + '\nComputer Score: ' + computerScore); 
+        document.body.appendChild(para);
+        if (playerScore > 4 || computerScore > 4) {
+            winner.innerText = ("Game Over. \n" + winLose(both));
+            document.body.appendChild(winner);
+            var reStart = document.createElement("button");
+            reStart.innerHTML = "Play Again";
+            reStart.onclick = () => window.location.reload(true);
+            document.body.appendChild(reStart);
+
         }
+    }
 
-        function round(playerSelection, computerSelection) {
-            both = (combined.indexOf(playerSelection + computerSelection);
-            console.log(winLose(both) + ' ' + '\nYou chose ' + playerSelection + '\nThe computer chose ' + computerSelection + '\n' + result(both) + '\nYour Score: ' + playerScore + '\nComputer Score: ' + computerScore);
+    // Generate random number (1 - 3) and convert to 'Rock', 'Paper', or 'Scissors'
+    function computerPlay() {
+        let compPick =['Rock', 'Paper', 'Scissors'];
+        var compNumber = Math.floor(Math.random() * 3);
+        return compPick[compNumber];
+    }
+
+    // Match both to array of combined values to determine winner/loser
+    function winLose(both) {
+        if (both <= 2) {
+            ++playerScore;
+            return('You Win!');
+        } else if (both <= 5) {
+            ++computerScore;
+            return('You Lose!');
+        } else {
+            return('Tie!');
         }
+    }
 
-        // Generate random number (1 - 3) and convert to 'Rock', 'Paper', or 'Scissors'
-        function computerPlay() {
-            let compPick =['Rock', 'Paper', 'Scissors'];
-            var compNumber = Math.floor(Math.random() * 3);
-            return compPick[compNumber];
+    // Match both to array of combined values to display how game was won 
+    function result(both) {
+        if (both == 1 || both == 3) {
+            return('Paper covers rock!');
+        } else if (both == 2 || both == 4) {
+            return('Scissors cut paper!');
+        } else if (both == 0 || both == 5) {
+            return('Rock breaks scissors!');
+        } else {
+            return('');
         }
+    }
 
-        // Convert input to uppercase/lowercase 'Rock', 'Paper', or 'Scissors'
-        function convertPS(playerInput) {
-            return(playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase())
-        } 
+    const buttons = document.querySelectorAll('button');
 
-        // Match combined selections to array of combined values to determine winner/loser
-        function winLose(both) {
-            if both <= 2 {
-                ++playerScore;
-                return('You Win!');
-            } else if both <= 5) {
-                ++computerScore;
-                return('You Lose!');
-            } else {
-                return('Tie!');
-            }
-        }
+    buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        playRound(button.id);
+    });
+    });
 
-        // Match combined selections to array of combined values to display how game was won 
-        function result(both) {
-            if (both == 1 || both == 3) {
-                return('Paper covers rock!');
-            } else if (both == 2 || both == 4) {
-                return('Scissors cut paper!');
-            } else if (both == 0 || both == 5) {
-                return('Rock breaks scissors!');
-            } else {
-                return('');
-            }
-        }
-
-/*         const buttons = document.querySelectorAll('.btn');
-        window.addEventListener('click') */
   </script>  
 </body>
 </html>
